@@ -47,7 +47,7 @@ jobs:
         run: |
           git clone https://github.com/margaret3991/split-test.git 
           ls -lR
-          mv ApplicationTest.java src/test/java
+          mv split-test/ApplicationTest.java src/test/java
           ls -lR
           mvn clean compile test --batch-mode --fail-at-end
       - name: Publish Test Report
