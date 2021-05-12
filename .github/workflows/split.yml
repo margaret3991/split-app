@@ -43,12 +43,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Check out test
-      - uses: margaret3991/split-test
-        with: 
-	  path: main
       - name: Build with Maven
-        run: mvn clean compile test --batch-mode --fail-at-end
+        run: |
+          git clone https://github.com/margaret3991/split-test.git 
+          ls -lR
+          mv split-test/ApplicationTest.java src/test/java
+          ls -lR
+          mvn clean compile test --batch-mode --fail-at-end
       - name: Publish Test Report
         if: ${{ always() }}
         uses: scacap/action-surefire-report@v1
