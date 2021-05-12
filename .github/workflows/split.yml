@@ -30,7 +30,7 @@ jobs:
           # Change reporter level if you need [info,warning,error].
           # GitHub Status Check won't become failure with a warning.
           level: warning
-          workdir: src/main
+          workdir: split-test/src/main
  
   build:
     # The type of runner that the job will run on
@@ -47,8 +47,9 @@ jobs:
         run: |
           git clone https://github.com/margaret3991/split-test.git 
           ls -lR
-          mv Application.java src/main/java
+          mv Application.java split-test/src/main/java
           ls -lR
+          cd split-test
           mvn clean compile test --batch-mode --fail-at-end
       - name: Publish Test Report
         if: ${{ always() }}
